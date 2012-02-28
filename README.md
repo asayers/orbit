@@ -3,15 +3,15 @@ Orbit
 
 Simulates the motion of a free body in the classical gravitational field of fixed masses.
 
-Instructions
-------------
-
-Press `Space` to restart the simulation (randomises planet locations and masses). Use the arrow keys to impart a force to the free body. Use `w`, `a`, `s`, and `d` to move the camera independantly of the body. Press `f` to toggle whether the camera follows the body. Use `n` and `m` to decrement and increment the precision (warning: framerate drops if you go too high). Use `j` and `k` to change the colour-depth of the field visualisation. Press `h` to view the help screen, and any key thereafter to return to the simulation. Press `Escape` to quit.
-
 Usage
 -----
 
-There's a binary available [here](http://cl.ly/Ec5J) (dated 28/2/12), which can be run with `java -jar orbit.jar` (or by double-clicking on Windows or OS X). The linked binary might not be up-to-date, though; if not, you might be better off doing a fresh compile:
+Press `Space` to restart the simulation (randomises planet locations and masses). Use the arrow keys to impart a force to the free body. Use `w`, `a`, `s`, and `d` to move the camera independantly of the body. Press `f` to toggle whether the camera follows the body. Use `n` and `m` to decrement and increment the precision (warning: framerate drops if you go too high). Use `j` and `k` to change the colour-depth of the field visualisation. Press `h` to view the help screen, and any key thereafter to return to the simulation. Press `Escape` to quit.
+
+Installation
+------------
+
+There's a binary available [here](http://cl.ly/Ec5J) (dated 28/2/12), which can be run with `java -jar orbit.jar` (or by double-clicking on Windows or OS X). The linked binary might not be up-to-date; if not, you might be better off doing a fresh compile:
 
 [Download](https://github.com/asayers/orbit/zipball/master) or fork (`git clone git://github.com/asayers/orbit.git`) the source, `cd` into the project root directory, and compile it with `ant`. By default the buildfile will create an executable jar in dist/, which can be run with `java -jar orbit.jar`. Enjoy!
 
