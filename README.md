@@ -11,9 +11,9 @@ Press `Space` to restart the simulation (randomises planet locations and masses)
 Usage
 -----
 
-There's a binary available [here](http://cl.ly/Ec5J) (dated 28/2/12), which can be run with `java -jar orbit.jar` (or by double-clicking on Windows or OS X). The linked binary might not be up-to-date, though; if so, you could be better off doing a fresh compile:
+There's a binary available [here](http://cl.ly/Ec5J) (dated 28/2/12), which can be run with `java -jar orbit.jar` (or by double-clicking on Windows or OS X). The linked binary might not be up-to-date, though; if not, you might be better off doing a fresh compile:
 
-[Download](https://github.com/asayers/orbit/zipball/master) or fork (`git clone git://github.com/asayers/orbit.git`) the source, `cd` into the project root directory, and compile it with `ant`. Unfortunately the buildfile is a bit of a mess, and requires Eclipse to be installed in /usr/share/eclipse. If you don't want to use Eclipse, or have it installed elsewhere, feel free to modify it (a pull request would be welcome!) By default the buildfile will create an executable jar in dist/, which can be run with `java -jar orbit.jar`. Enjoy!
+[Download](https://github.com/asayers/orbit/zipball/master) or fork (`git clone git://github.com/asayers/orbit.git`) the source, `cd` into the project root directory, and compile it with `ant`. By default the buildfile will create an executable jar in dist/, which can be run with `java -jar orbit.jar`. Enjoy!
 
 Future Versions
 ---------------
