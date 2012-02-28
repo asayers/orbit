@@ -11,7 +11,16 @@ Press `Space` to restart the simulation (randomises planet locations). Use the a
 Usage
 -----
 
-Download the source, `cd` into the root directory, and compile with `ant`. Unfortunately the buildfile is a bit of a mess, and requires Eclipse to be installed in /usr/share/eclipse. If you don't want to use Eclipse, or have it installed elsewhere, feel free to modify (a pull request would be welcome!) By default the buildfile will create an executable jar in /dist, which can be run with `java -jar orbit.jar`. Enjoy!
+Download the source, `cd` into the project root directory, and compile with `ant`. Unfortunately the buildfile is a bit of a mess, and requires Eclipse to be installed in /usr/share/eclipse. If you don't want to use Eclipse, or have it installed elsewhere, feel free to modify (a pull request would be welcome!) By default the buildfile will create an executable jar in dist/, which can be run with `java -jar orbit.jar`. Enjoy!
+
+Future Versions
+---------------
+
+Features to be implimented:
+ - Different planet sprites (to be selected from at random)
+ - Ability to add new planets on the fly (by clicking, perhaps)
+ - Planet sizes proportional to their mass. Would require adding a little complexity to the collision checker.
+ - Better collisions. Ideally the target body should bounce and lose some speed.
 
 Author
 ------
