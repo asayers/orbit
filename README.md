@@ -16,7 +16,7 @@ There's a binary available [here](http://cl.ly/Ec5J) (dated 28/2/12), which can 
 [Download][zipball] or [fork][fork] the source, `cd` into the project root directory, and compile it with `ant`. By default the buildfile will create an executable jar in dist/, which can be run with `java -jar orbit.jar`. Enjoy!
 
 [zipball]: https://github.com/asayers/orbit/zipball/master
-[fork]: ./ "`git clone git://github.com/asayers/orbit.git`"
+[fork]: # "`git clone git://github.com/asayers/orbit.git`"
 
 Future Versions
 ---------------
