@@ -17,6 +17,7 @@ Future Versions
 ---------------
 
 Features to be implimented:
+
  - Different planet sprites (to be selected from at random)
  - Ability to add new planets on the fly (by clicking, perhaps)
  - Planet sizes proportional to their mass. Would require adding a little complexity to the collision checker.
