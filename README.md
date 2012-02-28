@@ -6,7 +6,7 @@ Simulates the motion of a free body in the classical gravitational field of fixe
 Instructions
 ------------
 
-Press `Space` to restart the simulation (randomises planet locations). Use the arrow keys to impart a force to the free body. Use `w`, `a`, `s`, and `d` to move the camera independantly of the body. Press `f` to toggle whether the camera follows the body. Use `n` and `m` to decrement and increment the precision (warning: framerate drops if you go too high). Press `h` to view the help screen, and any key thereafter to return to the simulation. Press `Escape` to quit.
+Press `Space` to restart the simulation (randomises planet locations). Use the arrow keys to impart a force to the free body. Use `w`, `a`, `s`, and `d` to move the camera independantly of the body. Press `f` to toggle whether the camera follows the body. Use `n` and `m` to decrement and increment the precision (warning: framerate drops if you go too high). Use `j` and `k` to change the colour-depth of the field visualisation. Press `h` to view the help screen, and any key thereafter to return to the simulation. Press `Escape` to quit.
 
 Usage
 -----
@@ -16,7 +16,7 @@ Download the source, `cd` into the project root directory, and compile with `ant
 Future Versions
 ---------------
 
-Features to be implimented:
+Features which might be implimented:
 
  - Different planet sprites (to be selected from at random)
  - Ability to add new planets on the fly (by clicking, perhaps)

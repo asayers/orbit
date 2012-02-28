@@ -15,11 +15,12 @@ public class Help implements Screen, InputProcessor {
 			"Simulates the motion of a free body in the classical gravitational field of fixed masses\n" +
 			"\n" +
 			"Controls:\n" +
-			"  Press Space to restart the simulation (randomises planet locations). Use the arrow keys to impart a force to the free body. Use w,a,s,d to move the camera independantly of the body. Press f to toggle whether the camera follows the body. Use n, m to decrement and increment the precision (warning: framerate drops if you go too high). Press h to view this help screen. Press Escape to quit.\n" +
+			"  Press Space to restart the simulation (randomises planet locations). Use the arrow keys to impart a force to the free body. Use w,a,s,d to move the camera independantly of the body. Press f to toggle whether the camera follows the body. Use n, m to decrement and increment the precision (warning: framerate drops if you go too high). Use j, k to change the colour-depth of the field visualisation. Press h to view this help screen. Press Escape to quit.\n" +
 			"  Press any key to return to the simulation.\n" +
 			"\n" +
 			"Author:\n" +
-			"  Alex Sayers (alex.sayers@gmail.com)";
+			"  Alex Sayers (alex.sayers@gmail.com)\n"+
+			"  https://github.com/asayers/orbit";
 	
 	
 	public Help(Simulation sim) {
