@@ -9,6 +9,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,7 +24,7 @@ public class Simulation implements Screen, InputProcessor {
 	public Pixmap pixmap;
 	public Texture background;
 	public Body target;
-	public boolean following = true;
+	public boolean following = false;
 	
 	public Simulation() {
 
@@ -43,10 +44,10 @@ public class Simulation implements Screen, InputProcessor {
 		
 		// Populate the stage
 		stage.addActor(target);
-		stage.addActor(new Mass());
-		stage.addActor(new Mass());
-		stage.addActor(new Mass());
-		stage.addActor(new Mass());
+		stage.addActor(new Body());
+		stage.addActor(new Body());
+		stage.addActor(new Body());
+		stage.addActor(new Body());
 				
 	}
 
@@ -56,25 +57,25 @@ public class Simulation implements Screen, InputProcessor {
 		// Act
 		
 		if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-			Game.GAME_CAM.translate(delta*100, 0, 0);
+			Game.GAME_CAM.translate(delta*200, 0, 0);
 			if(following == true) {
 				following = false;
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-			Game.GAME_CAM.translate(-delta*100, 0, 0);
+			Game.GAME_CAM.translate(-delta*200, 0, 0);
 			if(following == true) {
 				following = false;
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-			Game.GAME_CAM.translate(0, delta*100, 0);
+			Game.GAME_CAM.translate(0, delta*200, 0);
 			if(following == true) {
 				following = false;
 			}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-			Game.GAME_CAM.translate(0, -delta*100, 0);
+			Game.GAME_CAM.translate(0, -delta*200, 0);
 			if(following == true) {
 				following = false;
 			}
@@ -102,9 +103,9 @@ public class Simulation implements Screen, InputProcessor {
 		for(int j = 0; j < Game.HEIGHT/PRECISION; j++) {
 			for(int i = 0; i < Game.WIDTH/PRECISION; i++) {
 				for(int k = 0; k < actors.size(); k++) {
-					if(actors.get(k).getClass().equals(Mass.class)) {
-						Mass mass = (Mass) actors.get(k);
-						potential[i][j] -= (float) (mass.mass / Math.hypot(mass.x - Game.GAME_CAM.position.x + Game.WIDTH/2 - i*PRECISION, mass.y - Game.GAME_CAM.position.y + Game.HEIGHT/2 - j*PRECISION));
+					if(actors.get(k).getClass().equals(Body.class)) {
+						Body body = (Body) actors.get(k);
+						potential[i][j] -= (float) (body.mass / Math.hypot(body.x - Game.GAME_CAM.position.x + Game.WIDTH/2 - i*PRECISION, body.y - Game.GAME_CAM.position.y + Game.HEIGHT/2 - j*PRECISION));
 					}
 				}
 				pixmap.setColor(0, 0, -potential[i][j]/colours, 1);
@@ -166,6 +167,19 @@ public class Simulation implements Screen, InputProcessor {
 		if(keycode == Input.Keys.SPACE) {
 			Game.GAME.init();
 			Game.GAME.setScreen(new Simulation());
+			return true;
+		}
+		if(keycode == Input.Keys.ENTER) {
+			Vector3 pos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+			Game.GAME_CAM.project(pos);
+			stage.addActor(new Body(pos.x, pos.y));
+			return true;
+		}
+		
+		if(keycode == Input.Keys.O) {
+			stage.clear();
+			stage.addActor(new Body(50, 0, new Vector2(0, 1.6f), 250));
+			stage.addActor(new Body(-50, 0, new Vector2(0, -1.6f), 250));
 			return true;
 		}
 		
