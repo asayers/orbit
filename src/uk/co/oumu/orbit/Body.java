@@ -15,7 +15,7 @@ public class Body extends Actor {
 	float r;
 	float mass;
 	Sprite sprite;
-	
+	Simulation sim;
 	
 	public Body() {
 		this((float) ((Math.random() - 0.5)*Game.WIDTH) + Game.GAME_CAM.position.x, (float) ((Math.random() - 0.5)*Game.HEIGHT) + Game.GAME_CAM.position.y);
@@ -23,7 +23,10 @@ public class Body extends Actor {
 	
 	public Body(float x, float y) {
 		this(x, y, new Vector2((float) (Math.random()-0.5), (float) (Math.random()-0.5)), (float) (Math.random()*500 + 100));
-//		this(x, y, new Vector2(), (float) (Math.random()*200 + 100));
+	}
+	
+	public Body(Vector2 v) {
+		this((float) ((Math.random() - 0.5)*Game.WIDTH) + Game.GAME_CAM.position.x, (float) ((Math.random() - 0.5)*Game.HEIGHT) + Game.GAME_CAM.position.y, v, (float) (Math.random()*500 + 100));
 	}
 	
 	public Body(float x, float y, Vector2 v, float mass) {
@@ -34,16 +37,15 @@ public class Body extends Actor {
 		this.r = (float) Math.cbrt(mass/800);
 		this.sprite = new Sprite(Assets.planets, 0, 0, 64, 64);		
 		sprite.setScale(r);
-		
+				
 		System.out.println("Planet created at ("+x+","+y+") with mass "+mass);
 	}
 	
 	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
-		
-		Simulation sim = (Simulation) Game.GAME.getScreen();
-		
+	public void act(float delta) {
+
 		// Calculate the local potential
+		sim = (Simulation) Game.GAME.getScreen();
 		float[][] pot = new float[3][3];
 		List<Actor> actors = sim.stage.getActors();
 
@@ -51,7 +53,7 @@ public class Body extends Actor {
 			if(actors.get(k).getClass().equals(Body.class) && !actors.get(k).equals(this)) {
 				Body other = (Body) actors.get(k);
 				
-				if((Math.hypot(other.x - x, other.y - y) > (r + other.r)*32)) {
+				if((Math.hypot(other.x - x, other.y - y) > (r + other.r)*8)) {
 					pot[0][1] -= (float) (other.mass / Math.hypot(other.x - x + sim.PRECISION, other.y - y));
 					pot[2][1] -= (float) (other.mass / Math.hypot(other.x - x - sim.PRECISION, other.y - y));
 					pot[1][0] -= (float) (other.mass / Math.hypot(other.x - x, other.y - y + sim.PRECISION));
@@ -68,11 +70,19 @@ public class Body extends Actor {
 				}
 			}
 		}
-		v.x += (pot[0][1] - pot[2][1])/sim.PRECISION;
-		v.y += (pot[1][0] - pot[1][2])/sim.PRECISION;
+		
+		// Accelerate
+		v.x += (pot[0][1] - pot[2][1])*sim.SPEED/sim.PRECISION;
+		v.y += (pot[1][0] - pot[1][2])*sim.SPEED/sim.PRECISION;
 
-		x += v.x;
-		y += v.y;			
+		// Move
+		x += v.x * delta * sim.SPEED;
+		y += v.y * delta * sim.SPEED;			
+		
+	}
+	
+	@Override
+	public void draw(SpriteBatch batch, float parentAlpha) {
 		
 		sprite.setPosition(x - sprite.getWidth()/2, y - sprite.getHeight()/2);
 		sprite.draw(batch);
