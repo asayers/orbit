@@ -9,6 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Body extends Actor {
 	
+	// Velocity will be between + and - def_v. Mass will be between def_m[0] and def_m[1]
+	static final float def_v = 5;
+	static final float[] def_m = {100,500};
+	
 	float x;
 	float y;
 	Vector2 v;
@@ -22,11 +26,11 @@ public class Body extends Actor {
 	}
 	
 	public Body(float x, float y) {
-		this(x, y, new Vector2((float) (Math.random()-0.5), (float) (Math.random()-0.5)), (float) (Math.random()*500 + 100));
+		this(x, y, new Vector2((float) (Math.random()*2 - 1)*def_v, (float) (Math.random()*2 - 1)*def_v), (float) (Math.random()*(def_m[1]-def_m[0]) + def_m[0]));
 	}
 	
 	public Body(Vector2 v) {
-		this((float) ((Math.random() - 0.5)*Game.WIDTH) + Game.GAME_CAM.position.x, (float) ((Math.random() - 0.5)*Game.HEIGHT) + Game.GAME_CAM.position.y, v, (float) (Math.random()*500 + 100));
+		this((float) ((Math.random() - 0.5)*Game.WIDTH) + Game.GAME_CAM.position.x, (float) ((Math.random() - 0.5)*Game.HEIGHT) + Game.GAME_CAM.position.y, v, (float) (Math.random()*(def_m[1]-def_m[0]) + def_m[0]));
 	}
 	
 	public Body(float x, float y, Vector2 v, float mass) {
