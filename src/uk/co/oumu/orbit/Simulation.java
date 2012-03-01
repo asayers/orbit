@@ -147,13 +147,13 @@ public class Simulation implements Screen, InputProcessor {
 				
 				// Change simulation speed
 				if(Gdx.input.isKeyPressed(Input.Keys.COMMA)) {
-					SPEED = 3;
+					SPEED = 1;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.PERIOD)) {
 					SPEED = 8;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.SLASH)) {
 					SPEED = 16;
 				} else {
-					SPEED = 1;
+					SPEED = 3;
 				}
 	}
 
@@ -206,8 +206,8 @@ public class Simulation implements Screen, InputProcessor {
 		
 		if(keycode == Input.Keys.O) {
 			stage.clear();
-			stage.addActor(new Body(50, 0, new Vector2(0, 1.6f), 250));
-			stage.addActor(new Body(-50, 0, new Vector2(0, -1.6f), 250));
+			stage.addActor(new Body(50, 0, new Vector2(0, 8f), 250));
+			stage.addActor(new Body(-50, 0, new Vector2(0, -8f), 250));
 			return true;
 		}
 		if(keycode == Input.Keys.I) {

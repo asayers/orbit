@@ -38,11 +38,11 @@ public class Body extends Actor {
 		this.y = y;
 		this.v = v;
 		this.mass = mass;
-		this.r = (float) Math.cbrt(mass/800);
+		this.r = (float) Math.cbrt(mass/1000);
 		this.sprite = new Sprite(Assets.planets, 0, 0, 64, 64);		
 		sprite.setScale(r);
 				
-		System.out.println("Planet created at ("+x+","+y+") with mass "+mass);
+		System.out.println("Body created at ("+x+","+y+") with mass "+mass);
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class Body extends Actor {
 					// Coalesce
 					sim.stage.removeActor(this);
 					sim.stage.removeActor(other);
-					Body coalescance = new Body((r*x + other.r*other.x)/(r + other.r), (r*y+other.r*other.y)/(r + other.r), new Vector2((mass*v.x + other.mass*other.v.x)/(mass + other.mass), (mass*v.y + other.mass*other.v.y)/(mass + other.mass)), this.mass+other.mass);
+					Body coalescance = new Body((r*x + other.r*other.x)/(r + other.r), (r*y+other.r*other.y)/(r + other.r), new Vector2((mass*v.x + other.mass*other.v.x)/(mass + other.mass), (mass*v.y + other.mass*other.v.y)/(mass + other.mass)), (mass+other.mass));
 					sim.stage.addActor(coalescance);
 					if(sim.target.equals(this) || sim.target.equals(other)) {
 						sim.target = coalescance;
