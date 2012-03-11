@@ -1,6 +1,6 @@
 /* 
- * 									Orbit
- * 							by Alex Sayers, 29/2/12
+ * 				Orbit
+ * 			by Alex Sayers, 29/2/12
  * 
  * This program simulates the motion of massive bodies using a numerical
  * approximation to Newton's gravitational field equations. Usage notes
