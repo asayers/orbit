@@ -61,17 +61,6 @@ public class Simulation implements Screen, InputProcessor {
 		// Input Handling
 		handleInput(delta);
 		
-		// Update the bodies
-		if(paused==false) {
-			stage.act(delta);
-		}
-		
-		// Move the camera to follow the target
-		if(following == true) {
-			Vector3 translation = new Vector3(target.x - (Game.GAME_CAM.position.x), target.y - (Game.GAME_CAM.position.y), 0);
-			Game.GAME_CAM.translate(translation.x, translation.y, translation.z);
-		}
-		
 		// Calculate the potential
 		List<Actor> actors = stage.getActors();
 		potential = new float[Game.WIDTH/PRECISION][Game.HEIGHT/PRECISION];
@@ -82,9 +71,13 @@ public class Simulation implements Screen, InputProcessor {
 				for(int k = 0; k < actors.size(); k++) {
 					if(actors.get(k).getClass().equals(Body.class)) {
 						Body body = (Body) actors.get(k);
-						potential[i][j] -= (float) (body.mass / Math.hypot(body.x - Game.GAME_CAM.position.x + Game.WIDTH/2 - i*PRECISION, body.y - Game.GAME_CAM.position.y + Game.HEIGHT/2 - j*PRECISION));
+//						if(Math.abs(body.x - Game.GAME_CAM.position.x + Game.WIDTH/2 - i*PRECISION) > 2*PRECISION || Math.abs(body.y - Game.GAME_CAM.position.y + Game.HEIGHT/2 - j*PRECISION) > 2*PRECISION) {
+						if(Math.abs(body.i - i) > 1 || Math.abs(body.j - j) > 1) {
+							potential[i][j] -= (float) (body.mass / Math.hypot(body.x - Game.GAME_CAM.position.x + Game.WIDTH/2 - i*PRECISION, body.y - Game.GAME_CAM.position.y + Game.HEIGHT/2 - j*PRECISION));
+						}
 					}
 				}
+				
 				// Draw the pixmap
 				pixmap.setColor(0, 0, -potential[i][j]/colours, 1);
 				pixmap.drawRectangle(i, pixmap.getHeight() - j, PRECISION, PRECISION);
@@ -92,6 +85,17 @@ public class Simulation implements Screen, InputProcessor {
 		}
 		background.dispose();
 		background = new Texture(pixmap);
+		
+		// Update the bodies
+		if(paused==false) {
+			stage.act(delta);
+		}
+				
+		// Move the camera to follow the target
+		if(following == true) {
+			Vector3 translation = new Vector3(target.x - (Game.GAME_CAM.position.x), target.y - (Game.GAME_CAM.position.y), 0);
+			Game.GAME_CAM.translate(translation.x, translation.y, translation.z);
+		}
 		
 		
 		// Draw
